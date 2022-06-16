@@ -61,8 +61,8 @@ declare module '@elastic/eui' {
 
 1. Open up the file and see how easy it would be to convert to TypeScript.
 2. If it's very straightforward, go for it.
-3. If it's not and you wish to stay focused on your own PR, get around the error by adding a type definition file in the same folder as the dependency, with the same name.
-4. Minimally you will need to type what you are using in your PR.  No need to go crazy to fully type the thing or you might be there for a while depending on what's available.
+3. If it's not, and you wish to stay focused on your own PR, get around the error by adding a type definition file in the same folder as the dependency, with the same name.
+4. Minimally you will need to type what you are using in your PR. No need to go crazy to fully type the thing, or you might be there for a while depending on what's available.
 
 For example:
 
@@ -110,12 +110,12 @@ If that happens, just pick the closest one.
 If yarn doesn't find the module it may not have types.  For example, our `rison_node` package doesn't have types. In this case you have a few options:
 
 1. Contribute types into the DefinitelyTyped repo itself, or
-2. Create a top level `types` folder and point to that in the tsconfig. For example, Infra team already handled this for `rison_node` and added: `x-pack/legacy/plugins/infra/types/rison_node.d.ts`. Other code uses it too so we will need to pull it up. Or,
+2. Create a top level `types` folder and point to that in the tsconfig. For example, Infra team already handled this for `rison_node` and added: `x-pack/legacy/plugins/infra/types/rison_node.d.ts`. Other code uses it too, so we will need to pull it up. Or,
 3. Add a `// @ts-ignore` line above the import. This should be used minimally, the above options are better. However, sometimes you have to resort to this method.
 
 ### TypeScripting react files
 
-React has it's own concept of runtime types via `proptypes`. TypeScript gives you compile time types so I prefer those.
+React has its own concept of runtime types via `proptypes`. TypeScript gives you compile time types so I prefer those.
 
 Before:
 ```jsx
@@ -186,7 +186,7 @@ function ({ title, description }: {title: string, description: string}) {
   ...
 }
 
-or, use an interface
+// or use an interface
 
 interface Options {
   title: string;
@@ -202,7 +202,7 @@ function ({ title, description }: Options) {
 
 Using any is sometimes valid, but should rarely be used, even if to make quicker progress. Even `Unknown` is better than using `any` if you aren't sure of an input parameter.
 
-If you use a variable that isn't initially defined, you should give it a type or it will be `any` by default (and strangely this isn't a warning, even though I think it should be)
+If you use a variable that isn't initially defined, you should give it a type, or it will be `any` by default (and strangely this isn't a warning, even though I think it should be)
 
 Before - `color` will be type `any`:
 ```js
